@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1008770177828",
+    "project_id": "chefu-5dad7",
+    "storage_bucket": "chefu-5dad7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008770177828:android:9216275a48f6548c8271b1",
+        "android_client_info": {
+          "package_name": "com.ayush.chefu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaMTIpsUJAPK4NYSdm8A49f7xWgCrI9a8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
