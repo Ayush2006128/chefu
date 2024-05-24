@@ -1,6 +1,6 @@
-import 'package:ai_recipe_generation/theme.dart';
-import 'package:ai_recipe_generation/util/extensions.dart';
-import 'package:ai_recipe_generation/util/filter_chip_enums.dart';
+import 'package:myapp/theme.dart';
+import 'package:myapp/util/extensions.dart';
+import 'package:myapp/util/filter_chip_enum.dart';
 import 'package:flutter/material.dart';
 
 class FilterChipSelectionInput<T extends Enum> extends StatefulWidget {

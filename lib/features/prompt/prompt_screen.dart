@@ -1,11 +1,11 @@
-import 'package:ai_recipe_generation/features/prompt/prompt_view_model.dart';
-import 'package:ai_recipe_generation/util/extensions.dart';
+import 'package:myapp/features/prompt/prompt_view_model.dart';
+import 'package:myapp/util/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../theme.dart';
-import '../../util/filter_chip_enums.dart';
+import '../../util/filter_chip_enum.dart';
 import '../../widgets/filter_chip_selection_input.dart';
 import '../../widgets/highlight_border_on_hover_widget.dart';
 import '../../widgets/marketplace_button_widget.dart';

@@ -27,7 +27,7 @@ void main() async {
     final cameras = await availableCameras();
     camera = cameras.first;
   }
-  runApp(const MyApp());
+  runApp(const MainApp());
 
 }
 class MainApp extends StatefulWidget {
