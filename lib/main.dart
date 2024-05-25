@@ -13,6 +13,7 @@ import 'features/recipes/recipes_view_model.dart';
 import 'firebase_options.dart';
 import 'router.dart';
 import 'theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 late CameraDescription camera;
 late BaseDeviceInfo deviceInfo;
@@ -27,6 +28,7 @@ void main() async {
     final cameras = await availableCameras();
     camera = cameras.first;
   }
+  await dotenv.load(fileName: ".env");
   runApp(const MainApp());
 
 }
@@ -42,8 +44,8 @@ class _MainAppState extends State<MainApp> {
   late GenerativeModel geminiProModel;
   @override
   void initState() {
-    const apiKey =
-        String.fromEnvironment('API_KEY', defaultValue: 'key not found');
+    final apiKey = dotenv.env['API_KEY'] ?? 'key not found';
+
     if (apiKey == 'key not found') {
       throw InvalidApiKey(
         'Key not found in environment. Please add an API key.',
