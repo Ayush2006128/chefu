@@ -45,6 +45,7 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     final apiKey = dotenv.env['API_KEY'] ?? 'key not found';
+    print(apiKey);
 
     if (apiKey == 'key not found') {
       throw InvalidApiKey(
