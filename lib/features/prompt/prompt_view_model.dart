@@ -62,8 +62,6 @@ class PromptViewModel extends ChangeNotifier {
     return PromptData(
       images: userPrompt.images,
       textInput: mainPrompt,
-      basicIngredients: userPrompt.selectedBasicIngredients,
-      cuisines: userPrompt.selectedCuisines,
       dietaryRestrictions: userPrompt.selectedDietaryRestrictions,
       additionalTextInputs: [format],
     );
@@ -103,16 +101,6 @@ class PromptViewModel extends ChangeNotifier {
     FirestoreService.saveRecipe(recipe!);
   }
 
-  void addBasicIngredients(Set<BasicIngredientsFilter> ingredients) {
-    userPrompt.selectedBasicIngredients.addAll(ingredients);
-    notifyListeners();
-  }
-
-  void addCategoryFilters(Set<CuisineFilter> categories) {
-    userPrompt.selectedCuisines.addAll(categories);
-    notifyListeners();
-  }
-
   void addDietaryRestrictionFilter(
       Set<DietaryRestrictionsFilter> restrictions) {
     userPrompt.selectedDietaryRestrictions.addAll(restrictions);
@@ -121,48 +109,33 @@ class PromptViewModel extends ChangeNotifier {
 
   String get mainPrompt {
     return '''
-You are a Cat who's a chef that travels around the world a lot, and your travels inspire recipes.
-
-Recommend a recipe for me based on the provided image.
-The recipe should only contain real, edible ingredients.
-If there are no images attached, or if the image does not contain food items, respond exactly with: $badImageFailure
-
-Adhere to food safety and handling best practices like ensuring that poultry is fully cooked.
-I'm in the mood for the following types of cuisine: ${userPrompt.cuisines},
-I have the following dietary restrictions: ${userPrompt.dietaryRestrictions}
-Optionally also include the following ingredients: ${userPrompt.ingredients}
-Do not repeat any ingredients.
-
-After providing the recipe, add an descriptions that creatively explains why the recipe is good based on only the ingredients used in the recipe.  Tell a short story of a travel experience that inspired the recipe.
-List out any ingredients that are potential allergens.
-Provide a summary of how many people the recipe will serve and the the nutritional information per serving.
-
+You are a rubber duck who is an teacher and JEE topper
+Given an image of a problem related to engineering, STEM, or physics, chemistry, or maths
+explain the problem but do not provide the solution.
+you should only respond with the problem description.
+and you can give me step by step instructions to solve the problem.
+image should contain handwriting of the problem
 ${promptTextController.text.isNotEmpty ? promptTextController.text : ''}
 ''';
   }
 
   final String format = '''
-Return the recipe as valid JSON using the following structure:
+Return the answer as valid JSON using the following structure:
 {
   "id": \$uniqueId,
-  "title": \$recipeTitle,
-  "ingredients": \$ingredients,
+  "title": \$title,
+  "subject": \$subject,
   "description": \$description,
-  "instructions": \$instructions,
-  "cuisine": \$cuisineType,
-  "allergens": \$allergens,
-  "servings": \$servings,
-  "nutritionInformation": {
-    "calories": "\$calories",
-    "fat": "\$fat",
-    "carbohydrates": "\$carbohydrates",
-    "protein": "\$protein",
-  },
+  "steps": \$steps,
+  "quetion": \$quetionType,
 }
   
-uniqueId should be unique and of type String. 
-title, description, cuisine, allergens, and servings should be of String type. 
-ingredients and instructions should be of type List<String>.
-nutritionInformation should be of type Map<String, String>.
+uniqueId should be unique and of type String.
+title should be of type String.
+subject should be of type String.
+description should be of type String.
+steps should be of type String.
+quetionType should be of type String.
+all should be UTF-16 encoded.
 ''';
 }
