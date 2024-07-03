@@ -17,9 +17,9 @@ class RecipeDisplayWidget extends StatelessWidget {
   final Recipe recipe;
   final Widget? subheading;
 
-  List<Widget> _buildIngredients(List<String> ingredients) {
+  List<Widget> _buildsubjects(List<String> subjects) {
     final widgets = <Widget>[];
-    for (var ingredient in ingredients) {
+    for (var ingredient in subjects) {
       widgets.add(
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -45,19 +45,19 @@ class RecipeDisplayWidget extends StatelessWidget {
     return widgets;
   }
 
-  List<Widget> _buildInstructions(List<String> instructions) {
+  List<Widget> _buildsteps(List<String> steps) {
     final widgets = <Widget>[];
 
-    // check for existing numbers in instructions.
-    if (instructions.first.startsWith(RegExp('[0-9]'))) {
-      for (var instruction in instructions) {
+    // check for existing numbers in steps.
+    if (steps.first.startsWith(RegExp('[0-9]'))) {
+      for (var instruction in steps) {
         widgets.add(Text(instruction));
         widgets.add(const SizedBox(height: MarketplaceTheme.spacing6));
       }
     } else {
-      for (var i = 0; i < instructions.length; i++) {
+      for (var i = 0; i < steps.length; i++) {
         widgets.add(Text(
-          '${i + 1}. ${instructions[i]}',
+          '${i + 1}. ${steps[i]}',
           softWrap: true,
         ));
         widgets.add(const SizedBox(height: MarketplaceTheme.spacing6));
@@ -188,22 +188,22 @@ class RecipeDisplayWidget extends StatelessWidget {
                     TableRow(
                       children: [
                         Text(
-                          'Allergens:',
+                          'dificulty:',
                           style: MarketplaceTheme.paragraph.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(recipe.allergens.join(', '))
+                        Text(recipe.dificulty.join(', '))
                       ],
                     ),
                     TableRow(children: [
                       Text(
-                        'Servings:',
+                        'formula:',
                         style: MarketplaceTheme.paragraph.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(recipe.servings)
+                      Text(recipe.formula)
                     ]),
                     TableRow(children: [
                       Text(
@@ -214,7 +214,7 @@ class RecipeDisplayWidget extends StatelessWidget {
                       ),
                       const Text(''),
                     ]),
-                    ...recipe.nutritionInformation.entries.map((entry) {
+                    ...recipe.otherInfo.entries.map((entry) {
                       return TableRow(children: [
                         Row(
                           children: [
@@ -255,18 +255,16 @@ class RecipeDisplayWidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                     vertical: MarketplaceTheme.spacing7,
                   ),
-                  child:
-                      Text('Ingredients:', style: MarketplaceTheme.subheading1),
+                  child: Text('subjects:', style: MarketplaceTheme.subheading1),
                 ),
-                ..._buildIngredients(recipe.ingredients),
+                ..._buildsubjects(recipe.subjects),
                 const SizedBox(height: MarketplaceTheme.spacing4),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: MarketplaceTheme.spacing7),
-                  child: Text('Instructions:',
-                      style: MarketplaceTheme.subheading1),
+                  child: Text('steps:', style: MarketplaceTheme.subheading1),
                 ),
-                ..._buildInstructions(recipe.instructions),
+                ..._buildsteps(recipe.steps),
               ],
             ),
           )

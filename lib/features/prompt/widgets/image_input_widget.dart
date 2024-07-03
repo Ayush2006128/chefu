@@ -115,7 +115,7 @@ class _AddImageToPromptWidgetState extends State<AddImageToPromptWidget> {
               top: MarketplaceTheme.spacing7,
             ),
             child: Text(
-              'I have these ingredients:',
+              'I have these subjects:',
               style: MarketplaceTheme.dossierParagraph,
             ),
           ),

@@ -62,6 +62,8 @@ class PromptViewModel extends ChangeNotifier {
     return PromptData(
       images: userPrompt.images,
       textInput: mainPrompt,
+      basicsubjects: userPrompt.selectedBasicsubjects,
+      questions: userPrompt.selectedquestions,
       dietaryRestrictions: userPrompt.selectedDietaryRestrictions,
       additionalTextInputs: [format],
     );
@@ -101,6 +103,16 @@ class PromptViewModel extends ChangeNotifier {
     FirestoreService.saveRecipe(recipe!);
   }
 
+  void addBasicsubjects(Set<BasicsubjectsFilter> subjects) {
+    userPrompt.selectedBasicsubjects.addAll(subjects);
+    notifyListeners();
+  }
+
+  void addCategoryFilters(Set<questionFilter> categories) {
+    userPrompt.selectedquestions.addAll(categories);
+    notifyListeners();
+  }
+
   void addDietaryRestrictionFilter(
       Set<DietaryRestrictionsFilter> restrictions) {
     userPrompt.selectedDietaryRestrictions.addAll(restrictions);
@@ -109,33 +121,48 @@ class PromptViewModel extends ChangeNotifier {
 
   String get mainPrompt {
     return '''
-You are a rubber duck who is an teacher and JEE topper
-Given an image of a problem related to engineering, STEM, or physics, chemistry, or maths
-explain the problem but do not provide the solution.
-you should only respond with the problem description.
-and you can give me step by step instructions to solve the problem.
-image should contain handwriting of the problem
+You are a Cat who's a chef that travels around the world a lot, and your travels inspire recipes.
+
+Recommend a recipe for me based on the provided image.
+The recipe should only contain real, edible subjects.
+If there are no images attached, or if the image does not contain food items, respond exactly with: $badImageFailure
+
+Adhere to food safety and handling best practices like ensuring that poultry is fully cooked.
+I'm in the mood for the following types of question: ${userPrompt.questions},
+I have the following dietary restrictions: ${userPrompt.dietaryRestrictions}
+Optionally also include the following subjects: ${userPrompt.subjects}
+Do not repeat any subjects.
+
+After providing the recipe, add an descriptions that creatively explains why the recipe is good based on only the subjects used in the recipe.  Tell a short story of a travel experience that inspired the recipe.
+List out any subjects that are potential dificulty.
+Provide a summary of how many people the recipe will serve and the the nutritional information per serving.
+
 ${promptTextController.text.isNotEmpty ? promptTextController.text : ''}
 ''';
   }
 
   final String format = '''
-Return the answer as valid JSON using the following structure:
+Return the recipe as valid JSON using the following structure:
 {
   "id": \$uniqueId,
-  "title": \$title,
-  "subject": \$subject,
+  "title": \$recipeTitle,
+  "subjects": \$subjects,
   "description": \$description,
   "steps": \$steps,
-  "quetion": \$quetionType,
+  "question": \$questionType,
+  "dificulty": \$dificulty,
+  "formula": \$formula,
+  "otherInfo": {
+    "numOfVars": "\$numOfVars",
+    "topic": "\$topic",
+    "conceptsCoverd": "\$conceptsCoverd",
+    "frequentInExams": "\$frequentInExams",
+  },
 }
   
-uniqueId should be unique and of type String.
-title should be of type String.
-subject should be of type String.
-description should be of type String.
-steps should be of type String.
-quetionType should be of type String.
-all should be UTF-16 encoded.
+uniqueId should be unique and of type String. 
+title, description, question, dificulty, and formula should be of String type. 
+subjects and steps should be of type List<String>.
+otherInfo should be of type Map<String, String>.
 ''';
 }

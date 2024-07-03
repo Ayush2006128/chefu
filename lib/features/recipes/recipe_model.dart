@@ -8,24 +8,24 @@ class Recipe {
     required this.title,
     required this.id,
     required this.description,
-    required this.ingredients,
-    required this.instructions,
-    required this.cuisine,
-    required this.allergens,
-    required this.servings,
-    required this.nutritionInformation,
+    required this.subjects,
+    required this.steps,
+    required this.question,
+    required this.dificulty,
+    required this.formula,
+    required this.otherInfo,
     this.rating = -1,
   });
 
   final String id;
   final String title;
   final String description;
-  final List<String> ingredients;
-  final List<String> instructions;
-  final String cuisine;
-  final List<String> allergens;
-  final String servings;
-  final Map<String, dynamic> nutritionInformation;
+  final List<String> subjects;
+  final List<String> steps;
+  final String question;
+  final List<String> dificulty;
+  final String formula;
+  final Map<String, dynamic> otherInfo;
   int rating;
 
   factory Recipe.fromGeneratedContent(GenerateContentResponse content) {
@@ -37,25 +37,25 @@ class Recipe {
 
     if (json
         case {
-          "ingredients": List<dynamic> ingredients,
-          "instructions": List<dynamic> instructions,
+          "subjects": List<dynamic> subjects,
+          "steps": List<dynamic> steps,
           "title": String title,
           "id": String id,
-          "cuisine": String cuisine,
+          "question": String question,
           "description": String description,
-          "servings": String servings,
-          "nutritionInformation": Map<String, dynamic> nutritionInformation,
-          "allergens": List<dynamic> allergens,
+          "formula": String formula,
+          "otherInfo": Map<String, dynamic> otherInfo,
+          "dificulty": List<dynamic> dificulty,
         }) {
       return Recipe(
           id: id,
           title: title,
-          ingredients: ingredients.map((i) => i.toString()).toList(),
-          instructions: instructions.map((i) => i.toString()).toList(),
-          nutritionInformation: nutritionInformation,
-          allergens: allergens.map((i) => i.toString()).toList(),
-          cuisine: cuisine,
-          servings: servings,
+          subjects: subjects.map((i) => i.toString()).toList(),
+          steps: steps.map((i) => i.toString()).toList(),
+          otherInfo: otherInfo,
+          dificulty: dificulty.map((i) => i.toString()).toList(),
+          question: question,
+          formula: formula,
           description: description);
     }
 
@@ -66,13 +66,13 @@ class Recipe {
     return {
       'id': id,
       'title': title,
-      'instructions': instructions,
-      'ingredients': ingredients,
-      'cuisine': cuisine,
+      'steps': steps,
+      'subjects': subjects,
+      'question': question,
       'rating': rating,
-      'allergens': allergens,
-      'nutritionInformation': nutritionInformation,
-      'servings': servings,
+      'dificulty': dificulty,
+      'otherInfo': otherInfo,
+      'formula': formula,
       'description': description,
     };
   }
@@ -80,26 +80,26 @@ class Recipe {
   factory Recipe.fromFirestore(Map<String, Object?> data) {
     if (data
         case {
-          "ingredients": List<dynamic> ingredients,
-          "instructions": List<dynamic> instructions,
+          "subjects": List<dynamic> subjects,
+          "steps": List<dynamic> steps,
           "title": String title,
           "id": String id,
-          "cuisine": String cuisine,
+          "question": String question,
           "description": String description,
-          "servings": String servings,
-          "nutritionInformation": Map<String, dynamic> nutritionInformation,
-          "allergens": List<dynamic> allergens,
+          "formula": String formula,
+          "otherInfo": Map<String, dynamic> otherInfo,
+          "dificulty": List<dynamic> dificulty,
           "rating": int rating
         }) {
       return Recipe(
         id: id,
         title: title,
-        ingredients: ingredients.map((i) => i.toString()).toList(),
-        instructions: instructions.map((i) => i.toString()).toList(),
-        nutritionInformation: nutritionInformation,
-        allergens: allergens.map((i) => i.toString()).toList(),
-        cuisine: cuisine,
-        servings: servings,
+        subjects: subjects.map((i) => i.toString()).toList(),
+        steps: steps.map((i) => i.toString()).toList(),
+        otherInfo: otherInfo,
+        dificulty: dificulty.map((i) => i.toString()).toList(),
+        question: question,
+        formula: formula,
         description: description,
         rating: rating,
       );

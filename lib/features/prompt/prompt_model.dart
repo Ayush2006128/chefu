@@ -2,34 +2,33 @@ import 'package:camera/camera.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:myapp/util/filter_chip_enum.dart';
 
-
 class PromptData {
   PromptData({
     required this.images,
     required this.textInput,
-    Set<BasicIngredientsFilter>? basicIngredients,
-    Set<CuisineFilter>? cuisines,
+    Set<BasicsubjectsFilter>? basicsubjects,
+    Set<questionFilter>? questions,
     Set<DietaryRestrictionsFilter>? dietaryRestrictions,
     List<String>? additionalTextInputs,
   })  : additionalTextInputs = additionalTextInputs ?? [],
-        selectedBasicIngredients = basicIngredients ?? {},
-        selectedCuisines = cuisines ?? {},
+        selectedBasicsubjects = basicsubjects ?? {},
+        selectedquestions = questions ?? {},
         selectedDietaryRestrictions = dietaryRestrictions ?? {};
 
   PromptData.empty()
       : images = [],
         additionalTextInputs = [],
-        selectedBasicIngredients = {},
-        selectedCuisines = {},
+        selectedBasicsubjects = {},
+        selectedquestions = {},
         selectedDietaryRestrictions = {},
         textInput = '';
 
-  String get cuisines {
-    return selectedCuisines.map((catFilter) => catFilter.name).join(",");
+  String get questions {
+    return selectedquestions.map((catFilter) => catFilter.name).join(",");
   }
 
-  String get ingredients {
-    return selectedBasicIngredients
+  String get subjects {
+    return selectedBasicsubjects
         .map((ingredient) => ingredient.name)
         .join(", ");
   }
@@ -43,24 +42,24 @@ class PromptData {
   List<XFile> images;
   String textInput;
   List<String> additionalTextInputs;
-  Set<BasicIngredientsFilter> selectedBasicIngredients;
-  Set<CuisineFilter> selectedCuisines;
+  Set<BasicsubjectsFilter> selectedBasicsubjects;
+  Set<questionFilter> selectedquestions;
   Set<DietaryRestrictionsFilter> selectedDietaryRestrictions;
 
   PromptData copyWith({
     List<XFile>? images,
     String? textInput,
     List<String>? additionalTextInputs,
-    Set<BasicIngredientsFilter>? basicIngredients,
-    Set<CuisineFilter>? cuisineSelections,
+    Set<BasicsubjectsFilter>? basicsubjects,
+    Set<questionFilter>? questionSelections,
     Set<DietaryRestrictionsFilter>? dietaryRestrictions,
   }) {
     return PromptData(
       images: images ?? this.images,
       textInput: textInput ?? this.textInput,
       additionalTextInputs: additionalTextInputs ?? this.additionalTextInputs,
-      basicIngredients: basicIngredients ?? selectedBasicIngredients,
-      cuisines: cuisineSelections ?? selectedCuisines,
+      basicsubjects: basicsubjects ?? selectedBasicsubjects,
+      questions: questionSelections ?? selectedquestions,
       dietaryRestrictions: dietaryRestrictions ?? selectedDietaryRestrictions,
     );
   }

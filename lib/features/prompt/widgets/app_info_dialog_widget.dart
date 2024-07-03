@@ -47,14 +47,14 @@ class AppInfoDialog extends StatelessWidget {
               height: MarketplaceTheme.spacing4,
             ),
             bulletRow(
-              "Add images of ingredients you have, like a picture of the inside of your fridge or pantry.",
+              "Add images of subjects you have, like a picture of the inside of your fridge or pantry.",
               icon: Symbols.looks_one,
             ),
             const SizedBox(
               height: MarketplaceTheme.spacing7,
             ),
             bulletRow(
-              "Choose what kind of food you're in the mood for, and what staple ingredients you have that might not be pictured.",
+              "Choose what kind of food you're in the mood for, and what staple subjects you have that might not be pictured.",
               icon: Symbols.looks_two,
             ),
             const SizedBox(

@@ -206,7 +206,7 @@ class _ListTileState extends State<_ListTile> {
                   top: widget.constraints.isMobile ? 40 : 60,
                   left: 0,
                   child: Text(
-                    widget.recipe.cuisine,
+                    widget.recipe.question,
                     style: MarketplaceTheme.subheading1,
                   ),
                 ),

@@ -1,4 +1,4 @@
-enum CuisineFilter {
+enum questionFilter {
   italian,
   mexican,
   american,
@@ -12,7 +12,7 @@ enum CuisineFilter {
   southAfrican,
 }
 
-enum BasicIngredientsFilter {
+enum BasicsubjectsFilter {
   oil,
   butter,
   flour,
@@ -49,18 +49,18 @@ String dietaryRestrictionReadable(DietaryRestrictionsFilter filter) {
   };
 }
 
-String cuisineReadable(CuisineFilter filter) {
+String questionReadable(questionFilter filter) {
   return switch (filter) {
-    CuisineFilter.italian => 'Italian',
-    CuisineFilter.mexican => 'Mexican',
-    CuisineFilter.american => 'American',
-    CuisineFilter.french => 'French',
-    CuisineFilter.japanese => 'Japanese',
-    CuisineFilter.chinese => 'Chinese',
-    CuisineFilter.indian => 'Indian',
-    CuisineFilter.ethiopian => 'Ethiopian',
-    CuisineFilter.moroccan => 'Moroccan',
-    CuisineFilter.greek => 'Greek',
-    CuisineFilter.southAfrican => 'South African',
+    questionFilter.italian => 'Italian',
+    questionFilter.mexican => 'Mexican',
+    questionFilter.american => 'American',
+    questionFilter.french => 'French',
+    questionFilter.japanese => 'Japanese',
+    questionFilter.chinese => 'Chinese',
+    questionFilter.indian => 'Indian',
+    questionFilter.ethiopian => 'Ethiopian',
+    questionFilter.moroccan => 'Moroccan',
+    questionFilter.greek => 'Greek',
+    questionFilter.southAfrican => 'South African',
   };
 }

@@ -37,11 +37,11 @@ class _CategorySelectionInputState<T extends Enum>
             (idx) {
               final chipData = widget.allValues[idx];
               String label(dynamic chipData) {
-                if (chipData is CuisineFilter) {
-                  return cuisineReadable(chipData);
+                if (chipData is questionFilter) {
+                  return questionReadable(chipData);
                 } else if (chipData is DietaryRestrictionsFilter) {
                   return dietaryRestrictionReadable(chipData);
-                } else if (chipData is BasicIngredientsFilter) {
+                } else if (chipData is BasicsubjectsFilter) {
                   return chipData.name;
                 } else {
                   throw "unknown enum";

@@ -34,7 +34,7 @@ class AnimatedAppBar extends StatelessWidget {
   String get helperText {
     return switch (tabController.index) {
       0 =>
-        "Tell me what ingredients you have and what you're feelin', and I'll create a recipe for you!",
+        "Tell me what subjects you have and what you're feelin', and I'll create a recipe for you!",
       1 => "These are all my saved recipes created by Chef Noodle.",
       2 => 'Settings',
       _ => 'Uh oh!',

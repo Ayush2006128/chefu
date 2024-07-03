@@ -89,15 +89,15 @@ class PromptScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(elementPadding),
                       child: _FilterChipSection(
-                        label: "I also have these staple ingredients: ",
-                        child: FilterChipSelectionInput<BasicIngredientsFilter>(
+                        label: "I also have these staple subjects: ",
+                        child: FilterChipSelectionInput<BasicsubjectsFilter>(
                           onChipSelected: (selected) {
-                            viewModel.addBasicIngredients(
-                                selected as Set<BasicIngredientsFilter>);
+                            viewModel.addBasicsubjects(
+                                selected as Set<BasicsubjectsFilter>);
                           },
-                          allValues: BasicIngredientsFilter.values,
+                          allValues: BasicsubjectsFilter.values,
                           selectedValues:
-                              viewModel.userPrompt.selectedBasicIngredients,
+                              viewModel.userPrompt.selectedBasicsubjects,
                         ),
                       ),
                     ),
@@ -106,13 +106,14 @@ class PromptScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(elementPadding),
                       child: _FilterChipSection(
                         label: "I'm in the mood for: ",
-                        child: FilterChipSelectionInput<CuisineFilter>(
+                        child: FilterChipSelectionInput<questionFilter>(
                           onChipSelected: (selected) {
                             viewModel.addCategoryFilters(
-                                selected as Set<CuisineFilter>);
+                                selected as Set<questionFilter>);
                           },
-                          allValues: CuisineFilter.values,
-                          selectedValues: viewModel.userPrompt.selectedCuisines,
+                          allValues: questionFilter.values,
+                          selectedValues:
+                              viewModel.userPrompt.selectedquestions,
                         ),
                       ),
                     ),
@@ -144,14 +145,14 @@ class PromptScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(elementPadding),
                             child: _FilterChipSection(
                               label: "I'm in the mood for: ",
-                              child: FilterChipSelectionInput<CuisineFilter>(
+                              child: FilterChipSelectionInput<questionFilter>(
                                 onChipSelected: (selected) {
                                   viewModel.addCategoryFilters(
-                                      selected as Set<CuisineFilter>);
+                                      selected as Set<questionFilter>);
                                 },
-                                allValues: CuisineFilter.values,
+                                allValues: questionFilter.values,
                                 selectedValues:
-                                    viewModel.userPrompt.selectedCuisines,
+                                    viewModel.userPrompt.selectedquestions,
                               ),
                             ),
                           ),
@@ -160,16 +161,16 @@ class PromptScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(elementPadding),
                             child: _FilterChipSection(
-                              label: "I also have these staple ingredients: ",
-                              child: FilterChipSelectionInput<
-                                  BasicIngredientsFilter>(
+                              label: "I also have these staple subjects: ",
+                              child:
+                                  FilterChipSelectionInput<BasicsubjectsFilter>(
                                 onChipSelected: (selected) {
-                                  viewModel.addBasicIngredients(
-                                      selected as Set<BasicIngredientsFilter>);
+                                  viewModel.addBasicsubjects(
+                                      selected as Set<BasicsubjectsFilter>);
                                 },
-                                allValues: BasicIngredientsFilter.values,
-                                selectedValues: viewModel
-                                    .userPrompt.selectedBasicIngredients,
+                                allValues: BasicsubjectsFilter.values,
+                                selectedValues:
+                                    viewModel.userPrompt.selectedBasicsubjects,
                               ),
                             ),
                           ),
