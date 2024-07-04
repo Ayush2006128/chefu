@@ -24,7 +24,7 @@ class PromptViewModel extends ChangeNotifier {
   TextEditingController promptTextController = TextEditingController();
 
   String badImageFailure =
-      "The recipe request either does not contain images, or does not contain images of food items. I cannot recommend a recipe.";
+      "The requested image does not contain hand writen problem.";
 
   Recipe? recipe;
   String? _geminiFailureResponse;
@@ -64,7 +64,7 @@ class PromptViewModel extends ChangeNotifier {
       textInput: mainPrompt,
       basicsubjects: userPrompt.selectedBasicsubjects,
       questions: userPrompt.selectedquestions,
-      dietaryRestrictions: userPrompt.selectedDietaryRestrictions,
+      detailLevel: userPrompt.selecteddetailLevel,
       additionalTextInputs: [format],
     );
   }
@@ -113,36 +113,33 @@ class PromptViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addDietaryRestrictionFilter(
-      Set<DietaryRestrictionsFilter> restrictions) {
-    userPrompt.selectedDietaryRestrictions.addAll(restrictions);
+  void addDietaryRestrictionFilter(Set<detailLevelFilter> restrictions) {
+    userPrompt.selecteddetailLevel.addAll(restrictions);
     notifyListeners();
   }
 
   String get mainPrompt {
     return '''
-You are a Cat who's a chef that travels around the world a lot, and your travels inspire recipes.
+You are a freindly teacher.
 
-Recommend a recipe for me based on the provided image.
-The recipe should only contain real, edible subjects.
-If there are no images attached, or if the image does not contain food items, respond exactly with: $badImageFailure
+I got stuck in this problem.
+Help me in solving.
+If there are no images attached, or if the image does not contain hand writen problems respond exactly with: $badImageFailure
 
-Adhere to food safety and handling best practices like ensuring that poultry is fully cooked.
-I'm in the mood for the following types of question: ${userPrompt.questions},
-I have the following dietary restrictions: ${userPrompt.dietaryRestrictions}
-Optionally also include the following subjects: ${userPrompt.subjects}
-Do not repeat any subjects.
+Just give me the steps to solve.
+The question is related to: ${userPrompt.questions},
+Level of datail should be: ${userPrompt.detailLevel}
+I got this problem following subject: ${userPrompt.subjects}
 
-After providing the recipe, add an descriptions that creatively explains why the recipe is good based on only the subjects used in the recipe.  Tell a short story of a travel experience that inspired the recipe.
-List out any subjects that are potential dificulty.
-Provide a summary of how many people the recipe will serve and the the nutritional information per serving.
+After providing the explaination, add an descriptions that creatively explains why this problem was easy or hard based on only the concepts used in this problem.  Give me a practice problem to solve similar to this.
+Provide a summary of how many times the problems related to this topic appeared in the previos year JEE exam and the some other info.
 
 ${promptTextController.text.isNotEmpty ? promptTextController.text : ''}
 ''';
   }
 
   final String format = '''
-Return the recipe as valid JSON using the following structure:
+Return the answer as valid JSON using the following structure:
 {
   "id": \$uniqueId,
   "title": \$recipeTitle,

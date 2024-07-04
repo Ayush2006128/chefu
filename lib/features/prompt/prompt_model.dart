@@ -8,19 +8,19 @@ class PromptData {
     required this.textInput,
     Set<BasicsubjectsFilter>? basicsubjects,
     Set<questionFilter>? questions,
-    Set<DietaryRestrictionsFilter>? dietaryRestrictions,
+    Set<detailLevelFilter>? detailLevel,
     List<String>? additionalTextInputs,
   })  : additionalTextInputs = additionalTextInputs ?? [],
         selectedBasicsubjects = basicsubjects ?? {},
         selectedquestions = questions ?? {},
-        selectedDietaryRestrictions = dietaryRestrictions ?? {};
+        selecteddetailLevel = detailLevel ?? {};
 
   PromptData.empty()
       : images = [],
         additionalTextInputs = [],
         selectedBasicsubjects = {},
         selectedquestions = {},
-        selectedDietaryRestrictions = {},
+        selecteddetailLevel = {},
         textInput = '';
 
   String get questions {
@@ -33,8 +33,8 @@ class PromptData {
         .join(", ");
   }
 
-  String get dietaryRestrictions {
-    return selectedDietaryRestrictions
+  String get detailLevel {
+    return selecteddetailLevel
         .map((restriction) => restriction.name)
         .join(", ");
   }
@@ -44,7 +44,7 @@ class PromptData {
   List<String> additionalTextInputs;
   Set<BasicsubjectsFilter> selectedBasicsubjects;
   Set<questionFilter> selectedquestions;
-  Set<DietaryRestrictionsFilter> selectedDietaryRestrictions;
+  Set<detailLevelFilter> selecteddetailLevel;
 
   PromptData copyWith({
     List<XFile>? images,
@@ -52,7 +52,7 @@ class PromptData {
     List<String>? additionalTextInputs,
     Set<BasicsubjectsFilter>? basicsubjects,
     Set<questionFilter>? questionSelections,
-    Set<DietaryRestrictionsFilter>? dietaryRestrictions,
+    Set<detailLevelFilter>? detailLevel,
   }) {
     return PromptData(
       images: images ?? this.images,
@@ -60,7 +60,7 @@ class PromptData {
       additionalTextInputs: additionalTextInputs ?? this.additionalTextInputs,
       basicsubjects: basicsubjects ?? selectedBasicsubjects,
       questions: questionSelections ?? selectedquestions,
-      dietaryRestrictions: dietaryRestrictions ?? selectedDietaryRestrictions,
+      detailLevel: detailLevel ?? selecteddetailLevel,
     );
   }
 }

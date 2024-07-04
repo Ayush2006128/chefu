@@ -39,7 +39,7 @@ class _CategorySelectionInputState<T extends Enum>
               String label(dynamic chipData) {
                 if (chipData is questionFilter) {
                   return questionReadable(chipData);
-                } else if (chipData is DietaryRestrictionsFilter) {
+                } else if (chipData is detailLevelFilter) {
                   return dietaryRestrictionReadable(chipData);
                 } else if (chipData is BasicsubjectsFilter) {
                   return chipData.name;

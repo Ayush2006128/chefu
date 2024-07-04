@@ -23,7 +23,7 @@ enum BasicsubjectsFilter {
   vinegar,
 }
 
-enum DietaryRestrictionsFilter {
+enum detailLevelFilter {
   vegan,
   vegetarian,
   lactoseIntolerant,
@@ -35,17 +35,17 @@ enum DietaryRestrictionsFilter {
   soyAllergies,
 }
 
-String dietaryRestrictionReadable(DietaryRestrictionsFilter filter) {
+String dietaryRestrictionReadable(detailLevelFilter filter) {
   return switch (filter) {
-    DietaryRestrictionsFilter.vegan => 'vegan',
-    DietaryRestrictionsFilter.vegetarian => 'vegetarian',
-    DietaryRestrictionsFilter.lactoseIntolerant => 'dairy free',
-    DietaryRestrictionsFilter.kosher => 'kosher',
-    // DietaryRestrictionsFilter.keto => 'low carb',
-    DietaryRestrictionsFilter.wheatAllergies => 'wheat allergy',
-    DietaryRestrictionsFilter.nutAllergies => 'nut allergy',
-    DietaryRestrictionsFilter.fishAllergies => 'fish allergy',
-    DietaryRestrictionsFilter.soyAllergies => 'soy allergy',
+    detailLevelFilter.vegan => 'vegan',
+    detailLevelFilter.vegetarian => 'vegetarian',
+    detailLevelFilter.lactoseIntolerant => 'dairy free',
+    detailLevelFilter.kosher => 'kosher',
+    // detailLevelFilter.keto => 'low carb',
+    detailLevelFilter.wheatAllergies => 'wheat allergy',
+    detailLevelFilter.nutAllergies => 'nut allergy',
+    detailLevelFilter.fishAllergies => 'fish allergy',
+    detailLevelFilter.soyAllergies => 'soy allergy',
   };
 }
 

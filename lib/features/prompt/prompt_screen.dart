@@ -122,15 +122,14 @@ class PromptScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(elementPadding),
                       child: _FilterChipSection(
                         label: "I have the following dietary restrictions:",
-                        child:
-                            FilterChipSelectionInput<DietaryRestrictionsFilter>(
+                        child: FilterChipSelectionInput<detailLevelFilter>(
                           onChipSelected: (selected) {
                             viewModel.addDietaryRestrictionFilter(
-                                selected as Set<DietaryRestrictionsFilter>);
+                                selected as Set<detailLevelFilter>);
                           },
-                          allValues: DietaryRestrictionsFilter.values,
+                          allValues: detailLevelFilter.values,
                           selectedValues:
-                              viewModel.userPrompt.selectedDietaryRestrictions,
+                              viewModel.userPrompt.selecteddetailLevel,
                         ),
                       ),
                     ),
@@ -181,15 +180,15 @@ class PromptScreen extends StatelessWidget {
                             child: _FilterChipSection(
                               label:
                                   "I have the following dietary restrictions:",
-                              child: FilterChipSelectionInput<
-                                  DietaryRestrictionsFilter>(
+                              child:
+                                  FilterChipSelectionInput<detailLevelFilter>(
                                 onChipSelected: (selected) {
-                                  viewModel.addDietaryRestrictionFilter(selected
-                                      as Set<DietaryRestrictionsFilter>);
+                                  viewModel.addDietaryRestrictionFilter(
+                                      selected as Set<detailLevelFilter>);
                                 },
-                                allValues: DietaryRestrictionsFilter.values,
-                                selectedValues: viewModel
-                                    .userPrompt.selectedDietaryRestrictions,
+                                allValues: detailLevelFilter.values,
+                                selectedValues:
+                                    viewModel.userPrompt.selecteddetailLevel,
                               ),
                             ),
                           ),
